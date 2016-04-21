@@ -50,6 +50,9 @@ class ViewController: UIViewController {
         ServerManager.sharedManager.receiveGetDataFor("auth", parameters: parameters,
             success: { (json) -> Void in
                 //когда все збс
+                let data = json as? Dictionary<String, AnyObject>
+                
+                User.addPersonToCache(data!)
             }) { (json) -> Void in
                 //когда все НЕ ЗБС
         }

@@ -12,8 +12,6 @@ import CoreData
 private let _sharedManager = CoreDataManager()
 
 class CoreDataManager {
-    var user = NSManagedObject()
-  
     
     private init() {
     }
@@ -22,23 +20,18 @@ class CoreDataManager {
         return _sharedManager
     }
     
-    func saveUser(user: User) {
+    lazy var managedObjectContext : NSManagedObjectContext? = {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        let entity =  NSEntityDescription.entityForName("User",
-            inManagedObjectContext:managedContext)
-        
-        let user = NSManagedObject(entity: entity!,
-            insertIntoManagedObjectContext: managedContext)
-        user.setValue(name, forKey: "name")
-        
+        return appDelegate.managedObjectContext
+    }()
+    
+    func save() {
+        print("CORE DATA LOG : SAVE CONTEXT")
         do {
-            try managedContext.save()
-            people.append(person)
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
+            try managedObjectContext!.save()
+        } catch let error as NSError {
+            print(error.localizedDescription)
         }
     }
-    
     
 }

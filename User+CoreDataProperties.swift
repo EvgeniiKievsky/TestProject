@@ -25,27 +25,54 @@ extension User {
     @NSManaged var notification: NSNumber?
     @NSManaged var avatar: String?
     
-    class func createUser(token: String, id: NSNumber, firstName: String, lastName: String, userName: String, email: String, address: String, newsLetter: NSNumber, notification: NSNumber, avatar: String) -> User {
-        let user = User()
-        user.token = token
-        user.id = id
-        user.firstName = firstName
-        user.lastName = lastName
-        user.userName = userName
-        user.email = email
-        user.address = address
-        user.newsLetter = newsLetter
-        user.notification = notification
-        user.avatar = avatar
+    class func createUser(moc: NSManagedObjectContext, id: NSNumber, firstName: String, lastName: String, userName: String, email: String, address: String, newsLetter: NSNumber, notification: NSNumber, avatar: String) -> User {
+        var user = fetchUserWithId(moc, id: Int64(id.integerValue))
+        
+        if user == nil {
+            user = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: moc) as? User
+        }
+        
+        user!.id = id
+        user!.firstName = firstName
+        user!.lastName = lastName
+        user!.userName = userName
+        user!.email = email
+        user!.address = address
+        user!.newsLetter = newsLetter
+        user!.notification = notification
+        user!.avatar = avatar
     
-        return user
+        return user!
+    }
+    
+    class func fetchUserWithId(moc: NSManagedObjectContext, id: Int64) -> User? {
+        let fetchRequest = NSFetchRequest(entityName: "User")
+        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
+        
+        var error: NSError?
+        
+        if moc.countForFetchRequest(fetchRequest, error: &error) == 0 {
+            return nil
+        }
+        
+        var user: [AnyObject]?
+        do {
+            user = try moc.executeFetchRequest(fetchRequest)
+        } catch let error1 as NSError {
+            error = error1
+            user = nil
+        }
+        if error != nil {
+            return nil
+        }
+        
+        return user?.first as? User
     }
     
     class func addPersonToCache(wholeUserDictionary: Dictionary<String, AnyObject>) -> User {
         //dictionary to core data
         let userPropertyDictionary: Dictionary = wholeUserDictionary["user"] as! Dictionary<String, AnyObject>
         
-        let token: String = wholeUserDictionary["token"] as? String ?? "noToken"
         let id: Int = userPropertyDictionary["id"] as! Int
         let firstName: String = userPropertyDictionary["firstName"] as? String ?? "noFirstName"
         let lastName: String = userPropertyDictionary["lastName"] as? String ?? "noLastName"
@@ -56,7 +83,7 @@ extension User {
         let notification: NSNumber = userPropertyDictionary["notification"] as! NSNumber
         let avatar: String = userPropertyDictionary["avatar"] as? String ?? "noAvatar"
         
-        let user: User = self.createUser(token, id: id, firstName: firstName, lastName: lastName, userName: userName, email: email, address: address, newsLetter: newsLetter, notification: notification, avatar: avatar)
+        let user: User = self.createUser(CoreDataManager.sharedManager.managedObjectContext!, id: id, firstName: firstName, lastName: lastName, userName: userName, email: email, address: address, newsLetter: newsLetter, notification: notification, avatar: avatar)
         return user
     }
 
