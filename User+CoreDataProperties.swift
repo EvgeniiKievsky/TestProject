@@ -73,6 +73,7 @@ extension User {
         //dictionary to core data
         let userPropertyDictionary: Dictionary = wholeUserDictionary["user"] as! Dictionary<String, AnyObject>
         
+        
         let id: Int = userPropertyDictionary["id"] as! Int
         let firstName: String = userPropertyDictionary["firstName"] as? String ?? "noFirstName"
         let lastName: String = userPropertyDictionary["lastName"] as? String ?? "noLastName"

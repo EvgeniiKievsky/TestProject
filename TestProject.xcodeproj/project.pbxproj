@@ -20,6 +20,11 @@
 		6B994DFE1CC9430C00DAC3BB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B994DFC1CC9430C00DAC3BB /* User.swift */; };
 		6B994DFF1CC9430C00DAC3BB /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B994DFD1CC9430C00DAC3BB /* User+CoreDataProperties.swift */; };
 		6B994E031CC9490000DAC3BB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B994E021CC9490000DAC3BB /* CoreDataManager.swift */; };
+		6B994E511CC9F3C900DAC3BB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B994E501CC9F3C900DAC3BB /* MainViewController.swift */; };
+		6B994E541CC9F4AB00DAC3BB /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B994E521CC9F4AB00DAC3BB /* CustomTableViewCell.swift */; };
+		6B994E551CC9F4AB00DAC3BB /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B994E531CC9F4AB00DAC3BB /* CustomTableViewCell.xib */; };
+		6B994E581CCA094500DAC3BB /* CellsHandlingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B994E571CCA094500DAC3BB /* CellsHandlingProtocol.swift */; };
+		6B994E5A1CCA127A00DAC3BB /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B994E591CCA127A00DAC3BB /* CellModel.swift */; };
 		72EACB2A04EF3F67BAA48006 /* Pods_TestProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21135F86E23AD096ABEB5AF /* Pods_TestProjectUITests.framework */; };
 		ECAC155E7B424EA4A69E5060 /* Pods_TestProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFE370CC7AC8FC7997E62D39 /* Pods_TestProjectTests.framework */; };
 /* End PBXBuildFile section */
@@ -63,6 +68,11 @@
 		6B994DFC1CC9430C00DAC3BB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = SOURCE_ROOT; };
 		6B994DFD1CC9430C00DAC3BB /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		6B994E021CC9490000DAC3BB /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		6B994E501CC9F3C900DAC3BB /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		6B994E521CC9F4AB00DAC3BB /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		6B994E531CC9F4AB00DAC3BB /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		6B994E571CCA094500DAC3BB /* CellsHandlingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellsHandlingProtocol.swift; sourceTree = "<group>"; };
+		6B994E591CCA127A00DAC3BB /* CellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
 		B6B5F573ABF155E77172E939 /* Pods-TestProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestProjectTests/Pods-TestProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		CFE370CC7AC8FC7997E62D39 /* Pods_TestProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D11C1C32384E61DEE6C04433 /* Pods-TestProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestProject/Pods-TestProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				6B8B1A7A1CC6C9E7004618CB /* ViewController.swift */,
+				6B994E501CC9F3C900DAC3BB /* MainViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -174,6 +185,9 @@
 		6B8B1A771CC6C9E7004618CB /* TestProject */ = {
 			isa = PBXGroup;
 			children = (
+				6B994E681CCAAA5E00DAC3BB /* Cells */,
+				6B994E671CCAA9FE00DAC3BB /* Models */,
+				6B994E561CCA08BA00DAC3BB /* Protocols */,
 				6B994DFB1CC9430000DAC3BB /* CoreData */,
 				6B13F53A1CC8F6BB00793FB9 /* ViewControllers */,
 				6B13F5391CC8F6A600793FB9 /* UI */,
@@ -210,6 +224,31 @@
 				6B994DFD1CC9430C00DAC3BB /* User+CoreDataProperties.swift */,
 			);
 			name = CoreData;
+			sourceTree = "<group>";
+		};
+		6B994E561CCA08BA00DAC3BB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				6B994E571CCA094500DAC3BB /* CellsHandlingProtocol.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		6B994E671CCAA9FE00DAC3BB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6B994E591CCA127A00DAC3BB /* CellModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		6B994E681CCAAA5E00DAC3BB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6B994E521CC9F4AB00DAC3BB /* CustomTableViewCell.swift */,
+				6B994E531CC9F4AB00DAC3BB /* CustomTableViewCell.xib */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,6 +365,7 @@
 			files = (
 				6B8B1A861CC6C9E7004618CB /* LaunchScreen.storyboard in Resources */,
 				6B8B1A831CC6C9E7004618CB /* Assets.xcassets in Resources */,
+				6B994E551CC9F4AB00DAC3BB /* CustomTableViewCell.xib in Resources */,
 				6B8B1A7E1CC6C9E7004618CB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,13 +514,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B994E5A1CCA127A00DAC3BB /* CellModel.swift in Sources */,
+				6B994E541CC9F4AB00DAC3BB /* CustomTableViewCell.swift in Sources */,
 				6B13F5371CC8F68900793FB9 /* ServerManager.swift in Sources */,
 				6B8B1A7B1CC6C9E7004618CB /* ViewController.swift in Sources */,
 				6B994DFF1CC9430C00DAC3BB /* User+CoreDataProperties.swift in Sources */,
+				6B994E581CCA094500DAC3BB /* CellsHandlingProtocol.swift in Sources */,
 				6B8B1A811CC6C9E7004618CB /* TestProject.xcdatamodeld in Sources */,
 				6B994DFE1CC9430C00DAC3BB /* User.swift in Sources */,
 				6B994E031CC9490000DAC3BB /* CoreDataManager.swift in Sources */,
 				6B8B1A791CC6C9E7004618CB /* AppDelegate.swift in Sources */,
+				6B994E511CC9F3C900DAC3BB /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
